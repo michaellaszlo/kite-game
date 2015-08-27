@@ -20,7 +20,21 @@ var Kite = {
   damping: 15,
   update: {
     frequency: 60
+  },
+  obstacle: {
+    radius: 30
   }
+};
+
+function Obstacle(kind, velocity) {
+  var obstacle = {
+    kind: kind,
+    velocity: velocity
+  };
+  var radius = Kite.obstacle.radius;
+  obstacle.x = Kite.width + radius;
+  obstacle.y = radius + Math.floor(Math.random() * (Kite.width - radius));
+  return obstacle;
 };
 
 Kite.load = function () {
@@ -39,7 +53,6 @@ Kite.load = function () {
       sideTurn = Math.PI - 2 * wideAngle,
       tailTurn = Math.PI - 2 * narrowAngle,
       sideLength = segmentRadius / Math.cos(narrowAngle);
-  console.log(sideLength);
   canvas.width = width;
   canvas.height = height;
   container.appendChild(canvas);
@@ -122,6 +135,8 @@ Kite.load = function () {
   };
 
   window.setInterval(update, 1000 / Kite.update.frequency);
+  var obstacle = Obstacle('plus', 50);
+  console.log(JSON.stringify(obstacle));
 };
 
 window.onload = Kite.load;
