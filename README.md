@@ -10,3 +10,5 @@ follows the second segment, and so on. A segment decelerates as it
 approaches its target, making it seem as if the segments were connected
 with elastic string.
 
+![Kite ribbon simulation](https://github.com/michaellaszlo/kite-ribbon/blob/master/screenshot.png)
+
