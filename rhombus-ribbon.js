@@ -1,15 +1,15 @@
 var Ribbon = {
   colors: {
-    bronze: '#a16a39',
+    bronze: '#ad7b2a',
     silver: '#a1aab2',
     gold: '#c1981f',
     platinum: '#99b5c5'
   },
   length: {
-    initial: 4,
-    bronze: 7,
-    silver: 14,
-    platinum: 20
+    initial: 9,
+    bronze: 12,
+    silver: 16,
+    platinum: 21
   },
   width: 720,
   height: 400,
@@ -17,7 +17,7 @@ var Ribbon = {
   minDistance: 40,
   maxDistance: 50,
   narrowAngleDegrees: 35,
-  damping: 15,
+  damping: 20,
   update: {
     frequency: 60
   },
@@ -37,12 +37,15 @@ function Obstacle(kind, velocity) {
   return obstacle;
 };
 
+function resize() {
+  Ribbon.canvas.width = Ribbon.width = window.innerWidth;
+  Ribbon.canvas.height = Ribbon.height = window.innerHeight;
+}
+
 Ribbon.load = function () {
-  var container = document.getElementById('gameContainer'),
-      canvas = document.createElement('canvas'),
+  var container = document.getElementById('canvasContainer'),
+      canvas = Ribbon.canvas = document.createElement('canvas'),
       context = canvas.getContext('2d'),
-      width = Ribbon.width,
-      height = Ribbon.height,
       segmentRadius = Ribbon.segmentRadius,
       maxDistance = Ribbon.maxDistance,
       minDistance = Ribbon.minDistance,
@@ -53,15 +56,17 @@ Ribbon.load = function () {
       sideTurn = Math.PI - 2 * wideAngle,
       tailTurn = Math.PI - 2 * narrowAngle,
       sideLength = segmentRadius / Math.cos(narrowAngle);
-  canvas.width = width;
-  canvas.height = height;
+  resize();
+  window.onresize = resize;
   container.appendChild(canvas);
 
   var segments = new Array(Ribbon.length.initial);
   for (var i = 0; i < segments.length; ++i) {
-    segments[i] = { id: i, x: 9 * width / 10, y: 9 * height / 10, angle: 0 };
+    segments[i] = {
+      id: i, x: 9 * Ribbon.width / 10, y: 9 * Ribbon.height / 10, angle: 0
+    };
   }
-  var mouse = { x: width / 10, y: height / 10, mouse: true };
+  var mouse = { x: Ribbon.width / 10, y: Ribbon.height / 10, mouse: true };
 
   function follow(segment, leader) {
     var dx = leader.x - segment.x,
@@ -82,7 +87,7 @@ Ribbon.load = function () {
   }
 
   function paint() {
-    context.clearRect(0, 0, width, height);
+    context.clearRect(0, 0, Ribbon.width, Ribbon.height);
     var color = Ribbon.colors.bronze;
     if (segments.length >= Ribbon.length.platinum) {
       color = Ribbon.colors.platinum;
@@ -135,8 +140,6 @@ Ribbon.load = function () {
   };
 
   window.setInterval(update, 1000 / Ribbon.update.frequency);
-  var obstacle = Obstacle('plus', 50);
-  console.log(JSON.stringify(obstacle));
 };
 
 window.onload = Ribbon.load;

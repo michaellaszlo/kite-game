@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  background: #444;
+  background: #faf6ff;
 }
 
 body, div, h1, h2, h3, p {
@@ -8,11 +8,13 @@ body, div, h1, h2, h3, p {
   padding: 0;
 }
 
-#gameContainer {
+#canvasContainer {
   position: fixed:
   top: 0;
   left: 0;
-  width: 720px;
-  height: 400px;
-  background: #faf6ff;
+  background: #0f576b;
+  overflow: hidden;
+}
+canvas {
+  display: block;
 }

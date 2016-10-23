@@ -1,14 +1,11 @@
-# Kite ribbon
+# Rhombus ribbon
 
-## Web simulation of the motion of a kite ribbon
+## A ribbon of rhombuses
 
-The kite ribbon is composed of rhomboid segments. The lead segment
-follows the mouse cursor. Try it out: mouse over the white area.
+We have a ribbon composed of rhombuses. The first rhombus follows the
+mouse cursor. The second rhombus follows the first, the third follows
+the second, and so on. A rhombus decelerates as it approaches its target,
+making it seem as if the rhombuses were connected with elastic string.
 
-The second ribbon segment follows the first segment, the third segment
-follows the second segment, and so on. A segment decelerates as it
-approaches its target, making it seem as if the segments were connected
-with elastic string.
-
-![Kite ribbon simulation](https://github.com/michaellaszlo/kite-ribbon/blob/master/screenshot.png)
+![Rhombus ribbon](https://github.com/michaellaszlo/rhombus-ribbon/blob/master/screenshot.png)
 
